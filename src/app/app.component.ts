@@ -1,48 +1,32 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { CounterComponent } from '../components/counter/counter.component';
+
+interface Product {
+  name: string;
+  image: string;
+  count: number;
+  price: number;
+  quantity: number;
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [],
+  imports: [CounterComponent],
 })
 export class AppComponent {
-  name = signal('Angular book');
-  image = signal(
-    'https://www.apogeonline.com/contrib/uploads/angular-copertina.jpg'
-  );
-  count = signal(0);
-  price = signal(40);
-  quantity = signal(10);
+  product: Product = {
+    name: 'Angular book',
+    image: 'https://www.apogeonline.com/contrib/uploads/angular-copertina.jpg',
+    count: 0,
+    price: 40,
+    quantity: 10,
+  };
 
-  totalPrice = computed(() => this.count() * this.price());
-  isDecrementDisabled = computed(() => this.count() === 0);
-  isIncrementDisabled = computed(() => this.count() === this.quantity());
+  onCountChange(count: number) {
+    this.product.count = count;
 
-  constructor() {
-    effect(() => {
-      const message = `Quantità del prodotto ${this.name()} aggiornata`;
-      console.log(message, this.count());
-    });
-  }
-
-  onDecrement() {
-    if (this.count() === 0) {
-      return;
-    }
-
-    this.count.update((value) => value - 1);
-  }
-
-  onIncrement() {
-    if (this.count() === this.quantity()) {
-      return;
-    }
-
-    this.count.update((value) => value + 1);
-  }
-
-  onReset() {
-    this.count.set(0);
+    console.log(this.product.count);
   }
 }

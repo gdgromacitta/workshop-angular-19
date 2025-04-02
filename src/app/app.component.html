@@ -2,42 +2,10 @@
   <img src="./logo.png" alt="" />
 </header>
 
-<div class="row row--start counter__container">
-  <img class="counter__image" [src]="image()" alt="" />
-
-  <div>
-    <p>{{ name() }} - {{ price() }}€</p>
-
-    <div class="row">
-      <button
-        class="counter__button"
-        [disabled]="isDecrementDisabled()"
-        (click)="onDecrement()"
-      >
-        -
-      </button>
-
-      <p class="counter__value">{{ count() }}</p>
-
-      <button
-        class="counter__button"
-        [disabled]="isIncrementDisabled()"
-        (click)="onIncrement()"
-      >
-        +
-      </button>
-
-      <button
-        class="counter__button counter__button--red"
-        [disabled]="isDecrementDisabled()"
-        (click)="onReset()"
-      >
-        🗑️
-      </button>
-    </div>
-
-    <div class="row row--start">
-      <p>Prezzo totale: {{ totalPrice() }}</p>
-    </div>
-  </div>
-</div>
+<app-counter
+  [name]="product.name"
+  [price]="product.price"
+  [image]="product.image"
+  [count]="product.count"
+  (countChange)="onCountChange($event)"
+/>
