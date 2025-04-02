@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +12,26 @@ export class AppComponent {
     'https://www.apogeonline.com/contrib/uploads/angular-copertina.jpg'
   );
   count = signal(0);
+  price = signal(40);
+  quantity = signal(10);
+
+  totalPrice = computed(() => this.count() * this.price());
+  isDecrementDisabled = computed(() => this.count() === 0);
+  isIncrementDisabled = computed(() => this.count() === this.quantity());
 
   onDecrement() {
+    if (this.count() === 0) {
+      return;
+    }
+
     this.count.update((value) => value - 1);
   }
 
   onIncrement() {
+    if (this.count() === this.quantity()) {
+      return;
+    }
+
     this.count.update((value) => value + 1);
   }
 
