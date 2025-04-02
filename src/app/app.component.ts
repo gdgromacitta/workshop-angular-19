@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +18,13 @@ export class AppComponent {
   totalPrice = computed(() => this.count() * this.price());
   isDecrementDisabled = computed(() => this.count() === 0);
   isIncrementDisabled = computed(() => this.count() === this.quantity());
+
+  constructor() {
+    effect(() => {
+      const message = `Quantità del prodotto ${this.name()} aggiornata`;
+      console.log(message, this.count());
+    });
+  }
 
   onDecrement() {
     if (this.count() === 0) {
