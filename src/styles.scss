@@ -1,1 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 50px;
+  padding: 1rem;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #007bff;
+  background-color: #f8f9fa;
+  text-align: center;
+
+  img {
+    height: 100%;
+  }
+}
+
+.mat-mdc-menu-content {
+  min-width: 200px;
+  padding: 5px 15px !important;
+
+  ul {
+    margin-left: -20px;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  &--start {
+    justify-content: start;
+  }
+}
+
+.counter {
+  &__container {
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    max-width: 300px;
+    border-radius: 8px;
+  }
+
+  &__image {
+    height: 100px;
+  }
+
+  &__value {
+    width: 20px;
+    text-align: center;
+  }
+
+  &__button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    &--red {
+      background-color: white;
+      border: 1px solid #dc3545;
+
+      &:hover:not(:disabled) {
+        background-color: #f8d7da;
+      }
+    }
+  }
+}
+
+.cart-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  width: 50px;
+  height: 50px;
+}
