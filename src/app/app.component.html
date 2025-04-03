@@ -2,10 +2,39 @@
   <img src="./logo.png" alt="" />
 </header>
 
+@for ( product of products(); track product.name; let i = $index) {
 <app-counter
   [name]="product.name"
   [price]="product.price"
   [image]="product.image"
   [count]="product.count"
-  (countChange)="onCountChange($event)"
+  (countChange)="onCountChange(i, $event)"
 />
+}
+
+<button mat-icon-button class="cart-button" [matMenuTriggerFor]="menu">
+  <mat-icon>shopping_cart</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu" yPosition="above">
+  @if(productsInCart().length === 0) {
+  <p>Il tuo carrello è vuoto</p>
+  } @else {
+  <p>Il tuo carrello contiene:</p>
+  <ul>
+    @for ( product of productsInCart(); track product.name; let i = $index) {
+    <li>
+      {{ product.name }} x {{ product.count }}
+      <br />
+      Totale: {{ product.price * product.count }} €
+    </li>
+
+    <br />
+    }
+  </ul>
+
+  <p>Totale: {{ totalPrice() }} €</p>
+
+  <button mat-button (click)="checkout()">Checkout</button>
+  }
+</mat-menu>
