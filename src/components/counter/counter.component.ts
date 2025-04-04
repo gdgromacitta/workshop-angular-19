@@ -1,9 +1,11 @@
+import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, input, model } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
   templateUrl: './counter.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CurrencyPipe],
 })
 export class CounterComponent {
   name = input('');

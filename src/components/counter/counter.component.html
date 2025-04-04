@@ -2,7 +2,7 @@
     <img class="counter__image" [src]="image()" alt="" />
   
     <div>
-      <p>{{ name() }} - {{ price() }}€</p>
+      <p>{{ name() }} - {{ price() | currency : 'EUR' }}</p>
   
       <div class="row">
         <button
@@ -33,7 +33,7 @@
       </div>
   
       <div class="row row--start">
-        <p>Prezzo totale: {{ totalPrice() }}</p>
+        <p>Prezzo totale: {{ totalPrice() | currency : 'EUR' }}</p>
       </div>
     </div>
   </div>
